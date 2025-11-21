@@ -9,7 +9,7 @@ namespace tolik505\relatedForm;
 
 use Yii;
 use Symfony\Component\DomCrawler\Crawler;
-use Symfony\Component\CssSelector\CssSelector;
+use Symfony\Component\CssSelector\CssSelectorConverter;
 use yii\helpers\Json;
 use yii\helpers\Html;
 use yii\base\InvalidConfigException;
@@ -290,7 +290,8 @@ class RelatedFormWidget extends \yii\base\Widget
         $root->appendChild($document->importNode($node, true));
 
         $domxpath = new \DOMXPath($document);
-        $xpath = CssSelector::toXPath($this->widgetItem . ':last-child');
+        $converter = new CssSelectorConverter();
+        $xpath = $converter->toXPath($this->widgetItem . ':last-child');
         $crawlerInverse = $domxpath->query($xpath);
 
         if ($crawlerInverse !== false) {
