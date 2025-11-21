@@ -1,70 +1,77 @@
-yii2-related-form
-===================
 
-It is a widget only for melon.ng to clone form elements of related models.
+# yii2-related-form (Fork)
 
-Installation
-------------
+This is a maintained fork of the original `tolik505/yii2-related-form` package.
+It has been updated for modern PHP versions and compatibility with the latest Symfony DomCrawler & CssSelector components.
 
-The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
+The widget allows cloning form fields for related models in Yii2 — useful for dynamic form collections inside CRUD interfaces.
 
-Either run
+## 🔧 Fork Improvements
+
+- Full compatibility with **PHP 8.x**
+- Updated Symfony dependencies:
+    - `symfony/dom-crawler` — `^2.6 || ^3.0 || ^4.0 || ^5.0 || ^6.0 || ^7.0`
+    - `symfony/css-selector` — `^2.6 || ^3.0 || ^4.0 || ^5.0 || ^6.0 || ^7.0`
+- Confirmed working with **Yii2 2.0.52 / 2.0.53**
+- Minor internal refactoring for updated Symfony API
+- Fixes for deprecated methods
+- Improved DOM parsing stability
+
+## 📦 Installation (Fork Version)
+
+### 1. Add the repository to your `composer.json`:
 
 ```
-composer require tolik505/yii2-related-form
+"repositories": {
+    "tolik505-related-form-fork": {
+        "type": "vcs",
+        "url": "https://github.com/Polishchyk/yii2-related-form"
+    }
+}
 ```
 
-or add
+### 2. Require the package:
 
 ```
-"tolik505/yii2-related-form": "dev-master"
+composer require tolik505/yii2-related-form:dev-master
 ```
 
-to the require section of your `composer.json` file.
+Or manually:
 
-Usage
-------------
-
-After CRUD generating add to getFormConfig()
 ```
+"require": {
+    "tolik505/yii2-related-form": "dev-master"
+}
+```
+
+## 🧰 Usage
+
+Inside `getFormConfig()`:
+
+```php
 [
-    'class' => tolik505\relatedForm\RelatedFormWidget::className(),
-    'relation' => 'tests', //name of relation
-    /*'uploadBehavior' => [ //if needed UploadBehavior
-        [
-            'attribute' => 'file_id',
-            'extensions' => ['png', 'gif', 'jpg', 'jpeg', 'ico', 'svg'],
-            'required' => true
-        ]
-    ],*/
+    'class' => tolik505\relatedForm\RelatedFormWidget::class,
+    'relation' => 'tests',
 ]
 ```
 
-###Javascript Events
+## 📡 JavaScript Events
 
 ```javascript
-
 $(".dynamicform_wrapper").on("beforeInsert", function(e, item) {
     console.log("beforeInsert");
 });
-
-$(".dynamicform_wrapper").on("afterInsert", function(e, item) {
-    console.log("afterInsert");
-});
-
-$(".dynamicform_wrapper").on("beforeDelete", function(e, item) {
-    if (! confirm("Are you sure you want to delete this item?")) {
-        return false;
-    }
-    return true;
-});
-
-$(".dynamicform_wrapper").on("afterDelete", function(e) {
-    console.log("Deleted item!");
-});
-
-$(".dynamicform_wrapper").on("limitReached", function(e, item) {
-    alert("Limit reached");
-});
-
 ```
+
+## ✔️ Compatibility Matrix
+
+| Component | Version |
+|----------|---------|
+| PHP | 8.0 – 8.3 |
+| Yii2 | 2.0.45 – 2.0.53 |
+| symfony/dom-crawler | 2.6 – 6.4 |
+| symfony/css-selector | 2.6 – 6.4 |
+
+## 📄 License
+
+BSD-3-Clause
