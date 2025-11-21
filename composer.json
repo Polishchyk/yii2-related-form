@@ -22,12 +22,17 @@
     ],
     "require": {
         "yiisoft/yii2": "~2.0.0",
-        "symfony/dom-crawler": "~2.6.6",
+        "symfony/dom-crawler": "^2.6 || ^3.0 || ^4.0 || ^5.0 || ^6.0",
         "symfony/css-selector": "~2.6.6"
     },
     "autoload": {
         "psr-4": {
             "tolik505\\relatedForm\\": "src"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
         }
     }
 }
